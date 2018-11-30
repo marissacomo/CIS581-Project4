@@ -17,13 +17,15 @@ def plot():
 
 	Ydiff = Ypred - Yexp
 
-	L2_Gradient = 2.0 * W * Ydiff * (1.0 - Ypred) * Ypred
+	L2_Gradient = 2.0 * Ydiff * (1.0 - Ypred) * Ypred
 
 	L2_Loss = Ydiff * Ydiff
 	CE_Loss = -1.0 * (Yexp * np.log(Ypred) + (1.0 - Yexp) * np.log(1.0 - Ypred))
 
 	# CE_Gradient = W * (Yexp * (Ypred - 1) + Ypred * (Yexp - 1))
-	CE_Gradient = ((-1.0 * Yexp / Ypred) + ((Yexp - 1) / (1 - Ypred))) * W * (1 - Ypred) * Ypred
+	# CE_Gradient = ((-1.0 * Yexp / Ypred) + ((Yexp - 1) / (1 - Ypred))) * W * (1 - Ypred) * Ypred
+	# CE_Gradient = (2.0 * Yexp - 1.0) * Ypred - Yexp
+	CE_Gradient = Ypred - Yexp
 
 	fig = plt.figure(figsize=plt.figaspect(0.2))
 
